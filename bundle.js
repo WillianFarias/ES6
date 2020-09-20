@@ -127,4 +127,19 @@ var arr = [1, 2, 3, 4, 5]; //map percorre o vetor e realiza alguma acao. recebe 
 var newArr = arr.map(function (item, index) {
   return item + index;
 });
-console.log(newArr);
+console.log(newArr); //Reduz vetor a uma única informacao
+
+var sum = arr.reduce(function (total, next) {
+  return total + next;
+});
+console.log(sum); //Filtra o vetor
+
+var filter = arr.filter(function (item) {
+  return item % 2 === 0;
+});
+console.log(filter); //verificar valor dentro do array
+
+var find = arr.find(function (item) {
+  return item === 4;
+});
+console.log(find);

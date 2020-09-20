@@ -79,3 +79,24 @@ const newArr = arr.map(function(item, index){
 });
 
 console.log(newArr);
+
+//Reduz vetor a uma única informacao
+const sum = arr.reduce(function(total, next){
+  return total + next;
+});
+
+console.log(sum);
+
+//Filtra o vetor
+const filter = arr.filter(function(item){
+  return item % 2 === 0;
+})
+
+console.log(filter);
+
+//verificar valor dentro do array
+const find = arr.find(function(item){
+  return item === 4;
+});
+
+console.log(find);
