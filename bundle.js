@@ -84,4 +84,22 @@ document.getElementById('novoTodo').onclick = function () {
   MinhaLista.add('Novo todo');
 };
 
-MinhaLista.mostraUsuario();
+MinhaLista.mostraUsuario(); //Métodos estaticos nao enchergam e nao dependem nada que esteja fora dela,
+//por está razao nem ao menos se usa constructor
+
+var Matematica = /*#__PURE__*/function () {
+  function Matematica() {
+    _classCallCheck(this, Matematica);
+  }
+
+  _createClass(Matematica, null, [{
+    key: "soma",
+    value: function soma(a, b) {
+      return a + b;
+    }
+  }]);
+
+  return Matematica;
+}();
+
+console.log(Matematica.soma(1, 2));

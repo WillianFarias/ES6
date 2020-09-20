@@ -41,3 +41,13 @@ document.getElementById('novoTodo').onclick = function() {
 }
 
 MinhaLista.mostraUsuario();
+
+//Métodos estaticos nao enchergam e nao dependem nada que esteja fora dela,
+//por está razao nem ao menos se usa constructor
+class Matematica {
+  static soma(a, b){
+    return a + b;
+  }
+}
+
+console.log(Matematica.soma(1, 2));
