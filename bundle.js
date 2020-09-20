@@ -6,17 +6,29 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-alert('teste');
+var TodoList = /*#__PURE__*/function () {
+  //Sempre será o primeiro a ser executado, analogo a outras linguagens
+  function TodoList() {
+    _classCallCheck(this, TodoList);
 
-var Teste = /*#__PURE__*/function () {
-  function Teste() {
-    _classCallCheck(this, Teste);
-  }
+    this.todos = [];
+  } //Método
 
-  _createClass(Teste, [{
-    key: "metodo",
-    value: function metodo() {}
+
+  _createClass(TodoList, [{
+    key: "addTodo",
+    value: function addTodo() {
+      this.todos.push('Novo todo');
+      console.log(this.todos);
+    }
   }]);
 
-  return Teste;
-}();
+  return TodoList;
+}(); //Criando objeto da classe
+
+
+var MinhaLista = new TodoList();
+
+document.getElementById('novoTodo').onclick = function () {
+  MinhaLista.addTodo();
+};
