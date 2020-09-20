@@ -120,4 +120,11 @@ function teste(x) {
   }
 }
 
-teste(10);
+teste(10); //Vetores
+
+var arr = [1, 2, 3, 4, 5]; //map percorre o vetor e realiza alguma acao. recebe como parametro item e index
+
+var newArr = arr.map(function (item, index) {
+  return item + index;
+});
+console.log(newArr);
