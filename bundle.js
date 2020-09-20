@@ -102,4 +102,10 @@ var Matematica = /*#__PURE__*/function () {
   return Matematica;
 }();
 
-console.log(Matematica.soma(1, 2));
+console.log(Matematica.soma(1, 2)); //constantes
+
+var usuario = {
+  nome: 'Willian'
+}; //Mutação, isso é diferente de uma reatribuicao const a = 1; a = 2; error
+
+usuario.nome = 'Feio';

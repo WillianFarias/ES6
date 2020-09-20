@@ -51,3 +51,8 @@ class Matematica {
 }
 
 console.log(Matematica.soma(1, 2));
+
+//constantes
+const usuario = { nome: 'Willian'};
+//Mutação, isso é diferente de uma reatribuicao const a = 1; a = 2; error
+usuario.nome = 'Feio';
