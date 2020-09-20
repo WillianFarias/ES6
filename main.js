@@ -56,3 +56,16 @@ console.log(Matematica.soma(1, 2));
 const usuario = { nome: 'Willian'};
 //Mutação, isso é diferente de uma reatribuicao const a = 1; a = 2; error
 usuario.nome = 'Feio';
+
+//Variáveis de escopo
+function teste(x) {
+  //variavel de escopo
+  let y = 2;
+
+  if (x > 5) {
+    y = 3;
+    console.log(x, y);
+  }
+}
+
+teste(10);
