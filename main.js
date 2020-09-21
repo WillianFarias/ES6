@@ -100,3 +100,12 @@ const find = arr.find(function(item){
 });
 
 console.log(find);
+
+//Arrow function 
+//Callback: passagem de funcao para funcao
+const arrArrowFunction = arr.map(item => item * 2);
+console.log('Arrow: ' + arrArrowFunction);
+
+const aqui = () => ({nome : "Will"});
+
+console.log(aqui());

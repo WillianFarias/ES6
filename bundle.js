@@ -142,4 +142,18 @@ console.log(filter); //verificar valor dentro do array
 var find = arr.find(function (item) {
   return item === 4;
 });
-console.log(find);
+console.log(find); //Arrow function 
+//Callback: passagem de funcao para funcao
+
+var arrArrowFunction = arr.map(function (item) {
+  return item * 2;
+});
+console.log('Arrow: ' + arrArrowFunction);
+
+var aqui = function aqui() {
+  return {
+    nome: "Will"
+  };
+};
+
+console.log(aqui());
