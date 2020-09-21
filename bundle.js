@@ -156,4 +156,12 @@ var aqui = function aqui() {
   };
 };
 
-console.log(aqui());
+console.log(aqui()); //Valores padroes
+
+var novaSoma = function novaSoma() {
+  var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3;
+  var b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
+  return a + b;
+};
+
+console.log(novaSoma(1));

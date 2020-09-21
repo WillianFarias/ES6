@@ -109,3 +109,9 @@ console.log('Arrow: ' + arrArrowFunction);
 const aqui = () => ({nome : "Will"});
 
 console.log(aqui());
+
+//Valores padroes
+
+const novaSoma = (a = 3, b = 6) => a + b;
+
+console.log(novaSoma(1));
