@@ -164,4 +164,27 @@ var novaSoma = function novaSoma() {
   return a + b;
 };
 
-console.log(novaSoma(1));
+console.log(novaSoma(1)); //desestruturacao
+
+var will = {
+  nome: 'Willian',
+  idade: 27,
+  endereco: {
+    cidade: 'Brasília',
+    estado: 'DF'
+  }
+};
+var nome = will.nome,
+    idade = will.idade,
+    cidade = will.endereco.cidade;
+console.log(nome);
+console.log(idade);
+console.log(cidade); //desestruturacao em parametros de funcoes
+
+function mostraNome(_ref) {
+  var nome = _ref.nome,
+      idade = _ref.idade;
+  console.log(nome, idade);
+}
+
+mostraNome(will);

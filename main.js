@@ -115,3 +115,26 @@ console.log(aqui());
 const novaSoma = (a = 3, b = 6) => a + b;
 
 console.log(novaSoma(1));
+
+//desestruturacao
+const will = {
+  nome: 'Willian',
+  idade: 27,
+  endereco :{
+    cidade: 'Brasília',
+    estado: 'DF'
+  }
+};
+
+const { nome, idade, endereco: { cidade }} = will;
+console.log(nome);
+console.log(idade);
+console.log(cidade);
+
+//desestruturacao em parametros de funcoes
+function mostraNome({ nome, idade }){
+  console.log(nome, idade);
+}
+
+mostraNome(will);
+
