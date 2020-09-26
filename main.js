@@ -183,3 +183,9 @@ const usuario1 = {
 const usuario2 = { ...usuario1, nome: 'Willian'};
 
 console.log(usuario2);
+
+//template literals
+const nameWill = "Willian";
+const ageWill = 27;
+
+console.log(`Meu nome é ${nameWill} e tenho ${ageWill} anos`);

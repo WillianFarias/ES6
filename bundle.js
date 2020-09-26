@@ -245,4 +245,8 @@ var usuario2 = _objectSpread(_objectSpread({}, usuario1), {}, {
   nome: 'Willian'
 });
 
-console.log(usuario2);
+console.log(usuario2); //template literals
+
+var nameWill = "Willian";
+var ageWill = 27;
+console.log("Meu nome \xE9 ".concat(nameWill, " e tenho ").concat(ageWill, " anos"));
