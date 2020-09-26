@@ -1,191 +1,130 @@
-class List {
-  constructor() {
-    this.data = [];
+class Usuario {
+  constructor(email, senha){
+    this.email = email;
+    this.senha = senha;
+    this.admin = false;
   }
 
-  add(data) {
-    this.data.push(data);
-    console.log(this.data);
+  isAdmin(){
+    return this.admin ? true : false;
   }
 }
 
-//Herança
-class TodoList extends List {
-  //Sempre será o primeiro a ser executado, analogo a outras linguagens
-  /*constructor(){
-    this.todos = [];
-  }
-
-  //Método
-  addTodo(){
-    this.todos.push('Novo todo');
-    console.log(this.todos);
-  }*/
-
+class Admin extends Usuario{
   constructor(){
-    //chamando constructor da classe pai
     super();
-    this.usuario = 'Willian';
-  }
-
-  mostraUsuario() {
-    console.log(this.usuario);
+    this.admin = true;
   }
 }
 
-//Criando objeto da classe
-const MinhaLista = new TodoList();
+const User1 = new Usuario('email@teste.com', 'senha123');
+const Adm1 = new Admin('email@teste.com', 'senha123');
 
-document.getElementById('novoTodo').onclick = function() {
-  MinhaLista.add('Novo todo');
-}
+console.log(User1.isAdmin()) // false
+console.log(Adm1.isAdmin()) // true
 
-MinhaLista.mostraUsuario();
+const usuarios = [
+  { nome: 'Diego', idade: 23, empresa: 'Rocketseat' },
+  { nome: 'Gabriel', idade: 15, empresa: 'Rocketseat' },
+  { nome: 'Lucas', idade: 30, empresa: 'Facebook' },
+];
 
-//Métodos estaticos nao enchergam e nao dependem nada que esteja fora dela,
-//por está razao nem ao menos se usa constructor
-class Matematica {
-  static soma(a, b){
-    return a + b;
-  }
-}
+const idades = usuarios.map(item => item.idade);
+console.log(idades);
 
-console.log(Matematica.soma(1, 2));
+const funcionario = usuarios.filter(value => value.empresa === 'Rocketseat' &&
+  value.idade > 17 );
 
-//constantes
-const usuario = { nome: 'Willian'};
-//Mutação, isso é diferente de uma reatribuicao const a = 1; a = 2; error
-usuario.nome = 'Feio';
+console.log(funcionario);
 
-//Variáveis de escopo
-function teste(x) {
-  //variavel de escopo
-  let y = 2;
+const funcionarioGoogle = usuarios.find(funcionario => funcionario.empresa === 'Google');
+console.log(funcionarioGoogle);
 
-  if (x > 5) {
-    y = 3;
-    console.log(x, y);
-  }
-}
+const idadeCinquenta = usuarios.filter(funcionario => (funcionario.idade * 2) < 51);
 
-teste(10);
+console.log(idadeCinquenta);
 
-//Vetores
 const arr = [1, 2, 3, 4, 5];
+const arrMaisDez = arr.map(item => item + 10);
+console.log(arrMaisDez);
 
-//map percorre o vetor e realiza alguma acao. recebe como parametro item e index
-const newArr = arr.map(function(item, index){
-  return item + index;
-});
+const usuarioT = { nome: 'Diego', idade: 23 };
+const mostraIdade = (user) => (user.idade);
+//console.log(mostraIdade(usuarioT));
 
-console.log(newArr);
+const name = "Diego";
+const age = 23;
 
-//Reduz vetor a uma única informacao
-const sum = arr.reduce(function(total, next){
-  return total + next;
-});
+const mostraUsuario = (name = 'Diego', age = 18) => [name, age];
+console.log(mostraUsuario(name, age));
+console.log(mostraUsuario(name));
 
-console.log(sum);
+const promise = () => new Promise((resolve, reject) => resolve());
 
-//Filtra o vetor
-const filter = arr.filter(function(item){
-  return item % 2 === 0;
-})
+console.log(promise);
 
-console.log(filter);
-
-//verificar valor dentro do array
-const find = arr.find(function(item){
-  return item === 4;
-});
-
-console.log(find);
-
-//Arrow function 
-//Callback: passagem de funcao para funcao
-const arrArrowFunction = arr.map(item => item * 2);
-console.log('Arrow: ' + arrArrowFunction);
-
-const aqui = () => ({nome : "Will"});
-
-console.log(aqui());
-
-//Valores padroes
-
-const novaSoma = (a = 3, b = 6) => a + b;
-
-console.log(novaSoma(1));
-
-//desestruturacao
-const will = {
-  nome: 'Willian',
-  idade: 27,
-  endereco :{
-    cidade: 'Brasília',
-    estado: 'DF'
-  }
+//Desestruturacao
+const empresa = {  
+  nome: 'Rocketseat',
+  endereco: {    
+    cidade: 'Rio do Sul',
+    estado: 'SC',  }
 };
 
-const { nome, idade, endereco: { cidade }} = will;
-console.log(nome);
-console.log(idade);
-console.log(cidade);
+const { nome, endereco: {cidade}, endereco: {estado} } = empresa;
 
-//desestruturacao em parametros de funcoes
-function mostraNome({ nome, idade }){
-  console.log(nome, idade);
+console.log(nome); // Rocketseat
+console.log(cidade); // Rio do Sul
+console.log(estado); // SC
+
+function mostraInfo({nome, idade}) {
+  return `${nome} tem ${idade} anos.`;
 }
 
-mostraNome(will);
+console.log(mostraInfo({ nome: 'Diego', idade: 23 }));
 
-//REST
-const user = {
-  name: 'Will',
-  idade: 27,
-  empresa: 'xxx'
-};
+const arrNumeros = [1, 2, 3, 4, 5, 6];
 
-const { name, ...resto} = user;
+const [x, ...y] = arrNumeros;
 
-console.log(name);
-console.log(resto);
+console.log(x); // 1
+console.log(y); // [2, 3, 4, 5, 6]
 
-//REST em vetores
-const myArr = [1, 2, 3, 4];
-
-const [ a, b, ...c] = myArr;
-
-console.log(a);
-console.log(b);
-console.log(c);
-
-//rest como parametro de funcao
-function somaRest(...params) {
+function soma(...params){
   return params.reduce((total, next) => total + next);
 }
 
-console.log(somaRest(1, 3, 4));
+console.log(soma(1, 2, 3, 4, 5, 6)); // 21
+console.log(soma(1, 2)); // 3
 
-//SPREAD
-const arr1 = [1, 2, 3];
-const arr2 = [4, 5, 6];
-
-const arr3 = [...arr1, ...arr2];
-
-console.log(arr3);
-
-const usuario1 = {
+const usuario = {
   nome: 'Diego',
   idade: 23,
-  empresa: 'Rocketseat'
+  endereco: {
+      cidade: 'Rio do Sul',
+      uf: 'SC',
+      pais: 'Brasil',
+  }
 };
 
-const usuario2 = { ...usuario1, nome: 'Willian'};
-
+const usuario2 = {...usuario, nome: 'Gabriel'};
 console.log(usuario2);
 
-//template literals
-const nameWill = "Willian";
-const ageWill = 27;
+const usuario3 = { ...usuario, endereco:{cidade: 'Lontras', uf: 'SC',
+ pais: 'Brasil',}};
+console.log(usuario3);
 
-console.log(`Meu nome é ${nameWill} e tenho ${ageWill} anos`);
+const newUser = 'Diego';
+const newAge = 23;
+console.log(`O usuário ${newUser} possui ${newAge} anos`);
+
+const oldName = 'Diego';
+const oldAge = 23;
+const oldUser = {
+  oldName,
+  oldAge,
+  cidade: 'Rio do Sul',
+};
+
+console.log(oldUser);
+

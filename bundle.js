@@ -6,10 +6,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
@@ -32,194 +28,147 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var List = /*#__PURE__*/function () {
-  function List() {
-    _classCallCheck(this, List);
+var Usuario = /*#__PURE__*/function () {
+  function Usuario(email, senha) {
+    _classCallCheck(this, Usuario);
 
-    this.data = [];
+    this.email = email;
+    this.senha = senha;
+    this.admin = false;
   }
 
-  _createClass(List, [{
-    key: "add",
-    value: function add(data) {
-      this.data.push(data);
-      console.log(this.data);
+  _createClass(Usuario, [{
+    key: "isAdmin",
+    value: function isAdmin() {
+      return this.admin ? true : false;
     }
   }]);
 
-  return List;
-}(); //Herança
+  return Usuario;
+}();
 
+var Admin = /*#__PURE__*/function (_Usuario) {
+  _inherits(Admin, _Usuario);
 
-var TodoList = /*#__PURE__*/function (_List) {
-  _inherits(TodoList, _List);
+  var _super = _createSuper(Admin);
 
-  var _super = _createSuper(TodoList);
-
-  //Sempre será o primeiro a ser executado, analogo a outras linguagens
-
-  /*constructor(){
-    this.todos = [];
-  }
-   //Método
-  addTodo(){
-    this.todos.push('Novo todo');
-    console.log(this.todos);
-  }*/
-  function TodoList() {
+  function Admin() {
     var _this;
 
-    _classCallCheck(this, TodoList);
+    _classCallCheck(this, Admin);
 
-    //chamando constructor da classe pai
     _this = _super.call(this);
-    _this.usuario = 'Willian';
+    _this.admin = true;
     return _this;
   }
 
-  _createClass(TodoList, [{
-    key: "mostraUsuario",
-    value: function mostraUsuario() {
-      console.log(this.usuario);
-    }
-  }]);
+  return Admin;
+}(Usuario);
 
-  return TodoList;
-}(List); //Criando objeto da classe
+var User1 = new Usuario('email@teste.com', 'senha123');
+var Adm1 = new Admin('email@teste.com', 'senha123');
+console.log(User1.isAdmin()); // false
 
+console.log(Adm1.isAdmin()); // true
 
-var MinhaLista = new TodoList();
-
-document.getElementById('novoTodo').onclick = function () {
-  MinhaLista.add('Novo todo');
+var usuarios = [{
+  nome: 'Diego',
+  idade: 23,
+  empresa: 'Rocketseat'
+}, {
+  nome: 'Gabriel',
+  idade: 15,
+  empresa: 'Rocketseat'
+}, {
+  nome: 'Lucas',
+  idade: 30,
+  empresa: 'Facebook'
+}];
+var idades = usuarios.map(function (item) {
+  return item.idade;
+});
+console.log(idades);
+var funcionario = usuarios.filter(function (value) {
+  return value.empresa === 'Rocketseat' && value.idade > 17;
+});
+console.log(funcionario);
+var funcionarioGoogle = usuarios.find(function (funcionario) {
+  return funcionario.empresa === 'Google';
+});
+console.log(funcionarioGoogle);
+var idadeCinquenta = usuarios.filter(function (funcionario) {
+  return funcionario.idade * 2 < 51;
+});
+console.log(idadeCinquenta);
+var arr = [1, 2, 3, 4, 5];
+var arrMaisDez = arr.map(function (item) {
+  return item + 10;
+});
+console.log(arrMaisDez);
+var usuarioT = {
+  nome: 'Diego',
+  idade: 23
 };
 
-MinhaLista.mostraUsuario(); //Métodos estaticos nao enchergam e nao dependem nada que esteja fora dela,
-//por está razao nem ao menos se usa constructor
+var mostraIdade = function mostraIdade(user) {
+  return user.idade;
+}; //console.log(mostraIdade(usuarioT));
 
-var Matematica = /*#__PURE__*/function () {
-  function Matematica() {
-    _classCallCheck(this, Matematica);
-  }
 
-  _createClass(Matematica, null, [{
-    key: "soma",
-    value: function soma(a, b) {
-      return a + b;
-    }
-  }]);
+var name = "Diego";
+var age = 23;
 
-  return Matematica;
-}();
-
-console.log(Matematica.soma(1, 2)); //constantes
-
-var usuario = {
-  nome: 'Willian'
-}; //Mutação, isso é diferente de uma reatribuicao const a = 1; a = 2; error
-
-usuario.nome = 'Feio'; //Variáveis de escopo
-
-function teste(x) {
-  //variavel de escopo
-  var y = 2;
-
-  if (x > 5) {
-    y = 3;
-    console.log(x, y);
-  }
-}
-
-teste(10); //Vetores
-
-var arr = [1, 2, 3, 4, 5]; //map percorre o vetor e realiza alguma acao. recebe como parametro item e index
-
-var newArr = arr.map(function (item, index) {
-  return item + index;
-});
-console.log(newArr); //Reduz vetor a uma única informacao
-
-var sum = arr.reduce(function (total, next) {
-  return total + next;
-});
-console.log(sum); //Filtra o vetor
-
-var filter = arr.filter(function (item) {
-  return item % 2 === 0;
-});
-console.log(filter); //verificar valor dentro do array
-
-var find = arr.find(function (item) {
-  return item === 4;
-});
-console.log(find); //Arrow function 
-//Callback: passagem de funcao para funcao
-
-var arrArrowFunction = arr.map(function (item) {
-  return item * 2;
-});
-console.log('Arrow: ' + arrArrowFunction);
-
-var aqui = function aqui() {
-  return {
-    nome: "Will"
-  };
+var mostraUsuario = function mostraUsuario() {
+  var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Diego';
+  var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 18;
+  return [name, age];
 };
 
-console.log(aqui()); //Valores padroes
+console.log(mostraUsuario(name, age));
+console.log(mostraUsuario(name));
 
-var novaSoma = function novaSoma() {
-  var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3;
-  var b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
-  return a + b;
+var promise = function promise() {
+  return new Promise(function (resolve, reject) {
+    return resolve();
+  });
 };
 
-console.log(novaSoma(1)); //desestruturacao
+console.log(promise); //Desestruturacao
 
-var will = {
-  nome: 'Willian',
-  idade: 27,
+var empresa = {
+  nome: 'Rocketseat',
   endereco: {
-    cidade: 'Brasília',
-    estado: 'DF'
+    cidade: 'Rio do Sul',
+    estado: 'SC'
   }
 };
-var nome = will.nome,
-    idade = will.idade,
-    cidade = will.endereco.cidade;
-console.log(nome);
-console.log(idade);
-console.log(cidade); //desestruturacao em parametros de funcoes
+var nome = empresa.nome,
+    cidade = empresa.endereco.cidade,
+    estado = empresa.endereco.estado;
+console.log(nome); // Rocketseat
 
-function mostraNome(_ref) {
+console.log(cidade); // Rio do Sul
+
+console.log(estado); // SC
+
+function mostraInfo(_ref) {
   var nome = _ref.nome,
       idade = _ref.idade;
-  console.log(nome, idade);
+  return "".concat(nome, " tem ").concat(idade, " anos.");
 }
 
-mostraNome(will); //REST
+console.log(mostraInfo({
+  nome: 'Diego',
+  idade: 23
+}));
+var arrNumeros = [1, 2, 3, 4, 5, 6];
+var x = arrNumeros[0],
+    y = arrNumeros.slice(1);
+console.log(x); // 1
 
-var user = {
-  name: 'Will',
-  idade: 27,
-  empresa: 'xxx'
-};
+console.log(y); // [2, 3, 4, 5, 6]
 
-var name = user.name,
-    resto = _objectWithoutProperties(user, ["name"]);
-
-console.log(name);
-console.log(resto); //REST em vetores
-
-var myArr = [1, 2, 3, 4];
-var a = myArr[0],
-    b = myArr[1],
-    c = myArr.slice(2);
-console.log(a);
-console.log(b);
-console.log(c); //rest como parametro de funcao
-
-function somaRest() {
+function soma() {
   for (var _len = arguments.length, params = new Array(_len), _key = 0; _key < _len; _key++) {
     params[_key] = arguments[_key];
   }
@@ -229,24 +178,43 @@ function somaRest() {
   });
 }
 
-console.log(somaRest(1, 3, 4)); //SPREAD
+console.log(soma(1, 2, 3, 4, 5, 6)); // 21
 
-var arr1 = [1, 2, 3];
-var arr2 = [4, 5, 6];
-var arr3 = [].concat(arr1, arr2);
-console.log(arr3);
-var usuario1 = {
+console.log(soma(1, 2)); // 3
+
+var usuario = {
   nome: 'Diego',
   idade: 23,
-  empresa: 'Rocketseat'
+  endereco: {
+    cidade: 'Rio do Sul',
+    uf: 'SC',
+    pais: 'Brasil'
+  }
 };
 
-var usuario2 = _objectSpread(_objectSpread({}, usuario1), {}, {
-  nome: 'Willian'
+var usuario2 = _objectSpread(_objectSpread({}, usuario), {}, {
+  nome: 'Gabriel'
 });
 
-console.log(usuario2); //template literals
+console.log(usuario2);
 
-var nameWill = "Willian";
-var ageWill = 27;
-console.log("Meu nome \xE9 ".concat(nameWill, " e tenho ").concat(ageWill, " anos"));
+var usuario3 = _objectSpread(_objectSpread({}, usuario), {}, {
+  endereco: {
+    cidade: 'Lontras',
+    uf: 'SC',
+    pais: 'Brasil'
+  }
+});
+
+console.log(usuario3);
+var newUser = 'Diego';
+var newAge = 23;
+console.log("O usu\xE1rio ".concat(newUser, " possui ").concat(newAge, " anos"));
+var oldName = 'Diego';
+var oldAge = 23;
+var oldUser = {
+  oldName: oldName,
+  oldAge: oldAge,
+  cidade: 'Rio do Sul'
+};
+console.log(oldUser);
