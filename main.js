@@ -138,3 +138,32 @@ function mostraNome({ nome, idade }){
 
 mostraNome(will);
 
+//REST
+const user = {
+  name: 'Will',
+  idade: 27,
+  empresa: 'xxx'
+};
+
+const { name, ...resto} = user;
+
+console.log(name);
+console.log(resto);
+
+//REST em vetores
+const myArr = [1, 2, 3, 4];
+
+const [ a, b, ...c] = myArr;
+
+console.log(a);
+console.log(b);
+console.log(c);
+
+//rest como parametro de funcao
+function somaRest(...params) {
+  return params.reduce((total, next) => total + next);
+}
+
+console.log(somaRest(1, 3, 4));
+
+//SPREAD
