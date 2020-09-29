@@ -5,4 +5,9 @@
 console.log(funcoes.soma(1, 2));
 console.log(funcoes.sub(1, 2));*/
 
-alert('Testando');
+//alert('Testando');
+
+import Usuario, {idade as idadeUsuario} from './functions';
+
+Usuario.info();
+alert(idadeUsuario);
