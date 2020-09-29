@@ -24,7 +24,7 @@ minhaPromise()
   }
 
   executaPromise();
-  */
+
  import axios from 'axios';
 
  class Api {
@@ -40,3 +40,33 @@ minhaPromise()
 
  Api.getUserInfo('WillianFarias');
  Api.getUserInfo('WillianFariaasdasdasds');
+   */
+
+// Funão delay aciona o .then após 1s
+const delay = () => new Promise((resolve) => {
+  setTimeout(() => { resolve('s')}, 1000);
+});
+
+async function executaPromise() {
+  console.log('1' + await delay());
+  console.log('2' + await delay());
+  console.log('3' + await delay());
+}
+
+executaPromise();
+
+import axios from 'axios';
+
+class Api {
+  static async getUserInfo(username) {
+    try {
+     const response = await axios.get(`https://api.github.com/users/${username}`);
+     console.log(response.data);
+    } catch (error) {
+      console.warn('Usuário não existe');
+    }
+  }
+}
+
+Api.getUserInfo('WillianFarias');
+Api.getUserInfo('WillianFariaasdasdasds');
