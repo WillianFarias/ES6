@@ -1,5 +1,8 @@
 {
   //preset-env - entende onde estamos trabalhando e converte o código da melhor
   //forma possível
-  "presets": ["@babel/preset-env"]
+  "presets": ["@babel/preset-env"],
+  "plugins": [
+    "@babel/plugin-transform-async-to-generator"
+  ]
 }

@@ -1,13 +1,28 @@
-//import soma, { sub } from './functions';
-//import somaFunction from './soma'
-/*import * as funcoes from './functions';
+const minhaPromise = () => new Promise((resolve, reject) => {
+  setTimeout(() => { resolve('OK')}, 2000);
+});
 
-console.log(funcoes.soma(1, 2));
-console.log(funcoes.sub(1, 2));*/
+/*
+minhaPromise()
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err ={
 
-//alert('Testando');
+  });
+  */
 
-import Usuario, {idade as idadeUsuario} from './functions';
+  //await só pode ser executado dentro de uma async function
+  async function executaPromise() {
+    console.log(await minhaPromise());
+    console.log(await minhaPromise());
+    console.log(await minhaPromise());
+  }
 
-Usuario.info();
-alert(idadeUsuario);
+  /*
+  const executaPromise = async () => {
+    console.log(await minhaPromise());
+  }
+  */
+
+  executaPromise();
